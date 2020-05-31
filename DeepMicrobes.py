@@ -113,7 +113,7 @@ def model_fn(features, labels, mode, params):
             export_outputs={
                 'predict': tf.estimator.export.PredictOutput(predictions)
             })
-
+    print("LOGITS LABELS", logits, labels)
     loss = tf.losses.sparse_softmax_cross_entropy(
         logits=logits, labels=labels)
 
