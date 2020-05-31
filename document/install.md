@@ -133,4 +133,7 @@ export PATH=/path/to/DeepMicrobes:$PATH
 ```
 
 
+PATH=/home/WUR/grosm002/DeepMicrobes_clones/pipelines:$PATH
+PATH=/home/WUR/grosm002/DeepMicrobes_clone/scripts:$PATH
+PATH=/home/WUR/grosm002/DeepMicrobes_clone:$PATH
 
