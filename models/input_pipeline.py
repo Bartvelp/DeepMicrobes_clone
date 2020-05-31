@@ -186,15 +186,15 @@ def input_function_train_one_hot(input_tfrec, repeat_count, batch_size, cpus, ma
     Returns:
         Dataset of (reads, label) pairs.
     """
-
+    print('INPUT TRAIN_ONEHOT')
     def _parse_function(serialized):
         features = \
             {
                 'read': tf.FixedLenSequenceFeature([], tf.float32, allow_missing=True),
                 'label': tf.FixedLenSequenceFeature([], tf.int64, allow_missing=True)
             }
-        parsed_example = tf.parse_single_example(
-            serialized=serialized, features=features)
+        parsed_example = tf.parse_single_example(serialized=serialized, features=features)
+        print('PARSED_EXAMPLE', parsed_example)
         read = parsed_example['read']
         label = parsed_example['label']
         d = read, label

@@ -1,0 +1,5 @@
+weights_seq2species
+seq2species_new_weights*
+bacteria_16s*
+**.pyc
+**.tfrec

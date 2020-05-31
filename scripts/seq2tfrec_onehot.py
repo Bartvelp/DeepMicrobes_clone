@@ -89,9 +89,10 @@ def main():
     args = parser.parse_args()
     input_fasta = args.input_seq
     output_tfrecord = args.output_tfrec
-    is_train = args.is_train
+    is_train = args.is_train == 'True' or args.is_train == True
     seq_type = args.seq_type
     if is_train:
+        print('Converting to training file')
         convert_advance_file(input_fasta, output_tfrecord, seq_type)
     else:
         convert_advance_file_predict(input_fasta, output_tfrecord, seq_type)

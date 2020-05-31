@@ -188,6 +188,7 @@ def train(flags_obj, model_function, dataset_name):
         flags_obj.hooks,
         batch_size=flags_obj.batch_size)
 
+    print('INPUT TRAIN_FN', flags_obj.encode_method)
     def input_fn_train():
         if flags_obj.encode_method == 'kmer':
             input_fn = input_function_train_kmer(
@@ -313,6 +314,8 @@ def predict(flags_obj, model_function):
 
 
 def main(_):
+    print('RUNNING MODE: ', flags.FLAGS.running_mode)
+    print('MAIN')
     if flags.FLAGS.running_mode == 'eval':
         evaluate(flags.FLAGS, model_fn)
     elif flags.FLAGS.running_mode == 'predict_prob':

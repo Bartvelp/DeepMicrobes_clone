@@ -79,6 +79,10 @@ def convolution(inputs, filter_dim, pointwise_dim=None, scale=1.0, padding='SAME
     in_channels = inputs.get_shape()[3].value
     filter_width, filter_depth = filter_dim
     filters = init_weights([1, filter_width, in_channels, filter_depth], scale, name='weights')
+    print('INPUTS', inputs)
+    print('filter_dim', filter_dim)
+    print('SHAPE', inputs.get_shape())
+    print('FILTERS', filters)
     #summary_histogram(filters.name.split(':')[0].split('/')[1], filters)
     if pointwise_dim is None:
         return tf.nn.conv2d(
@@ -149,9 +153,11 @@ class Seq2species(object):
         self.is_train = is_train
 
     def __call__(self, inputs):
+        print("INPUTS BEFORE RESHAPE", inputs)
         # inputs = tf.reshape(inputs, [-1, self.max_len, 4])
+        # inputs = tf.cast(inputs, tf.float32)
         x = tf.reshape(inputs, [-1, 1, self.max_len, 4], name='reshape_input')
-
+        # x = tf.cast(x, tf.float32)
         # first depth-wise separable conv
         with tf.variable_scope('convolution_1'):
             x = convolution(x, (spatial_conv_width[0], 1), pointwise_conv_depth[0], weight_init_scale)

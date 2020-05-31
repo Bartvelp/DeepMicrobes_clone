@@ -11,7 +11,7 @@ import os
 def label_one_genome(input_name, label, out_path):
     if out_path is None:
         out_path = os.getcwd()
-    output_name = os.path.join(out_path, 'label_' + input_name)
+    output_name = os.path.join(out_path, 'label_' + input_name.split('/')[-1])
     with open(output_name, 'w') as handle_out:
         with open(input_name, 'r') as handle_in:
             for line in handle_in:
