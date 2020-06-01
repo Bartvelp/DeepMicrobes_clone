@@ -41,7 +41,7 @@ def label_fasta(fasta_dict, output_fh):
     i += 1
 
 
-def generate_all_options(fasta_dict, window_length):
+def generate_all_options(fasta_dict, window_length, keep_every_nd=1):
   """Generates all possible sequence options for every entry in a fasta_dict.
   Calculates according to a moving window of size window_length, like:
   'BAAAC' -> '[BAAA]C' + 'B[AAAC] -> ['BAAA', 'AAAC']
@@ -49,6 +49,7 @@ def generate_all_options(fasta_dict, window_length):
   Args:
     fasta_dict: A sequence dict from parse_fasta
     window_length: int, size of the moving window
+    keep_every_nd: int; Keep every nd sequence like sequences[0::nd] 
   Returns:
     A fasta_dict but with all possible options
   """
@@ -64,15 +65,49 @@ def generate_all_options(fasta_dict, window_length):
         win_end = win_start + window_length
         window = sequence[win_start:win_end]
         all_sequence_dict[header].append(window)
+    # check if we added any windows, otherwise delete entry
+    if len(all_sequence_dict[header]) == 0:
+      del all_sequence_dict[header]
+    elif keep_every_nd is not 1:
+      all_sequence_dict[header] = all_sequence_dict[header][0::keep_every_nd]
   return all_sequence_dict
+
+
+def print_fasta_stats(fasta_dict):
+  """Prints some statistics of a sequence dictionary.
+
+  Args:
+    fasta_dict: dictionary of structure {'name': ['seq1', 'seq2'], etc. }
+
+  Side Effect:
+    Prints to standard out.
+  """
+  all_seqs = [seq for sublist in fasta_dict.values() for seq in sublist]
+  seq_lens = [len(seq) for seq in all_seqs]
+  num_seqs = len(all_seqs)
+  max_len = max(seq_lens)
+  min_len = min(seq_lens)
+  print('NUM ENTRIES: ', len(fasta_dict.keys()))
+  print('NUM SEQS TOTAL: ', num_seqs)
+  print('MAX LEN: ', max_len)
+  print('MIN LEN: ', min_len)
+  
+
 
 if __name__ == "__main__":
   input_fn = argv[1]
   output_fn = argv[2]
   max_len = int(argv[3])
+  keep_every_nd = int(argv[4]) # 1 keeps all, 2 throws away half, 3 2/3ds etc.
   print("Input refseq: {} output labbeled fasta: {}".format(input_fn, output_fn))
+
   fasta_dict = parse_fasta(open(input_fn))
-  all_options_dict = generate_all_options(fasta_dict, max_len)
+  print('FASTA stats orig')
+  print_fasta_stats(fasta_dict)
+  all_options_dict = generate_all_options(fasta_dict, max_len, keep_every_nd)
+  print('FASTA stats new all options')
+  print_fasta_stats(all_options_dict)
+
   label_fasta(all_options_dict, open(output_fn, 'w'))
   print('--num_classes={} --max_len={}'.format(len(fasta_dict.keys()), max_len))
   print('Done')
