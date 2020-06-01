@@ -74,5 +74,5 @@ if __name__ == "__main__":
   fasta_dict = parse_fasta(open(input_fn))
   all_options_dict = generate_all_options(fasta_dict, max_len)
   label_fasta(all_options_dict, open(output_fn, 'w'))
-  print('--num_classes={} --max_len={}', len(fasta_dict.keys()), max_len)
+  print('--num_classes={} --max_len={}'.format(len(fasta_dict.keys()), max_len))
   print('Done')
