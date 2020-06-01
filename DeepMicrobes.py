@@ -155,7 +155,7 @@ def model_fn(features, labels, mode, params):
 
 
 def train(flags_obj, model_function, dataset_name):
-    run_config = tf.estimator.RunConfig(save_checkpoints_steps=100000, keep_checkpoint_max=1000)
+    run_config = tf.estimator.RunConfig(save_checkpoints_steps=1000, keep_checkpoint_max=5)
 
     classifier = tf.estimator.Estimator(
         model_fn=model_function, model_dir=flags_obj.model_dir, config=run_config,
