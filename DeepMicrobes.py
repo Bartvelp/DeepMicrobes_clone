@@ -360,6 +360,8 @@ def main(_):
         train(flags.FLAGS, model_fn, 'dataset_name')
 
 if __name__ == "__main__":
+    tf.enable_eager_execution()
+    print("EXEC EAGER", tf.executing_eagerly())
     tf.logging.set_verbosity(tf.logging.INFO)
     universal_flags()
     model_specific_flags_embed_cnn()

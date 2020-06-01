@@ -211,6 +211,7 @@ def input_function_train_one_hot(input_tfrec, repeat_count, batch_size, cpus, ma
                                        tf.TensorShape([max_len * 4]), tf.TensorShape([None])),
                                    )
     dataset = dataset.prefetch(buffer_size=None)
+    print('DATASET', dataset)
     iterator = dataset.make_one_shot_iterator()
     batch_features, batch_labels = iterator.get_next()
     return batch_features, batch_labels

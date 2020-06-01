@@ -50,7 +50,7 @@ def predict_parse(rec):
 def convert_advance_file(input_file, output_tfrecord, seq_type):
     with tf.python_io.TFRecordWriter(output_tfrecord) as writer:
         with open(input_file) as handle:
-            for rec in SeqIO.parse(handle, seq_type):
+            for rec in list(SeqIO.parse(handle, seq_type)):
                 array, label = train_parse(rec)
                 data = \
                     {
@@ -101,5 +101,5 @@ def main():
 
 if __name__ == '__main__':
     main()
-
+    print('Done')
 
