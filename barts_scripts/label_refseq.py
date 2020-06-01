@@ -73,6 +73,6 @@ if __name__ == "__main__":
   print("Input refseq: {} output labbeled fasta: {}".format(input_fn, output_fn))
   fasta_dict = parse_fasta(open(input_fn))
   all_options_dict = generate_all_options(fasta_dict, max_len)
-  label_fasta(fasta_dict, open(output_fn, 'w'))
-  print('--num_classes={} --max_len={}', len(fasta_dict.keys), max_len)
+  label_fasta(all_options_dict, open(output_fn, 'w'))
+  print('--num_classes={} --max_len={}', len(fasta_dict.keys()), max_len)
   print('Done')
