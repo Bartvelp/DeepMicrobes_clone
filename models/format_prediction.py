@@ -10,7 +10,7 @@ def average_double_strands(prob_matrix, num_classes):
     print("PROB MATRIX LEN", len(prob_matrix[0]))
     # highest_prob_i = prob_matrix[0].index(max(prob_matrix[0]))
     print("HIGHEST PROB:", max(prob_matrix[0]))
-    prob_matrix = np.mean(np.reshape(prob_matrix, (-1, 2, num_classes)), axis=1)
+    prob_matrix = np.mean(np.reshape(prob_matrix, (-1, 1, num_classes)), axis=1)
     return prob_matrix
 
 

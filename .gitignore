@@ -1,4 +1,4 @@
-weights_seq2species
+weights_seq2species*
 seq2species_new_weights*
 *maxlen*.fa
 **.pyc
