@@ -116,5 +116,20 @@ if __name__ == "__main__":
   print_fasta_stats(all_options_dict)
 
   label_fasta(all_options_dict, open(output_fn, 'w'))
-  print('--num_classes={} --max_len={}'.format(len(all_options_dict.keys()), max_len))
+
+  # Print some helpfull commands
+  num_classes = len(all_options_dict.keys())
+  print('You should now run the following command to convert to tfrec:')
+  output_tfrec_fn = '.'.join(output_fn.split('.')[:-1]) + '.tfrec' # remove extension and add .tfrec
+  print('seq2tfrec_onehot.py --input_seq={} --output_tfrec={} --is_train=True'.format(output_fn, output_tfrec_fn))
+  print('And then to train:')
+  print(
+    """DeepMicrobes.py \\
+--input_tfrec={} \\
+--model_name=seq2species \\
+--model_dir=seq2species_new_weights_{}max_{}entries \\
+--train_epochs=10 \\
+--encode_method=one_hot \\
+--num_classes={} \\
+--max_len={}""".format(output_tfrec_fn, max_len, num_classes, num_classes, max_len))
   print('Done')
