@@ -8,7 +8,7 @@ python barts_scripts/label_refseq.py bacteria_16s_rrna_all.fa bacteria_16s_rrna_
 
 # Convert dataset to the binary format 
 seq2tfrec_onehot.py --input_seq=bacteria_16s_rrna_maxlen_500_num_entries_1000.fa --output_tfrec=bacteria_16s_rrna_maxlen_500_num_entries_1000.tfrec --is_train=True
-
+seq2tfrec_onehot.py --input_seq=bacteria_16s_rrna_500bp_test.fa --output_tfrec=bacteria_16s_rrna_500bp_test.tfrec
 # To train
 DeepMicrobes.py \
 --input_tfrec=bacteria_16s_rrna_maxlen_500_num_entries_1000.tfrec \
@@ -24,13 +24,13 @@ DeepMicrobes.py \
 DeepMicrobes.py \
 --batch_size=1 \
 --model_name=seq2species \
---model_dir=seq2species_new_weights_500max_200entries \
+--model_dir=seq2species_new_weights_500max_100entries \
 --encode_method=one_hot \
 --translate=False \
---num_classes=200 \
+--num_classes=100 \
 --max_len=500 \
 --pred_out=output.txt \
---running_mode=predict_paired_class \
---input_tfrec tbd.tfrec
+--running_mode=predict_single_class \
+--input_tfrec bacteria_16s_rrna_500bp_test.tfrec
 
 DeepMicrobes.py --input_tfrec=bacteria_16s_rrna_maxlen_500_num_entries_1000.tfrec --model_name=seq2species --model_dir=seq2species_new_weights_500max_100_entries --train_epochs=10 --encode_method=one_hot --num_classes=1000 --max_len=500
