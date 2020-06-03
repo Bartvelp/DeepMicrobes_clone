@@ -1,6 +1,4 @@
 from sys import argv
-import re
-
 
 def parse_fasta(fh):
   """Parses a RefSeq fasta file.

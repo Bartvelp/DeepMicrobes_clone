@@ -315,8 +315,6 @@ def predict(flags_obj, model_function):
 
 def main(_):
     print('RUNNING MODE: ', flags.FLAGS.running_mode)
-    print('FLAGS')
-    print(flags.FLAGS)
     print('Batch size', flags.FLAGS.batch_size)
     print('MAIN')
     if flags.FLAGS.running_mode == 'eval':
