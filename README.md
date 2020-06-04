@@ -41,7 +41,7 @@ DeepMicrobes.py \
 --num_classes=100 \
 --max_len=500 \
 --running_mode=eval \
---input_tfrec bacteria_16s_rrna_maxlen_500_num_entries_100.tfrec # Note that this also is the training file
+--input_tfrec=bacteria_16s_rrna_maxlen_500_num_entries_100.tfrec # Note that this also is the training file
 ```
 
 
@@ -56,7 +56,7 @@ DeepMicrobes.py \
 --max_len=500 \
 --pred_out=output.txt \
 --running_mode=predict_paired_class \
---input_tfrec bacteria_16s_rrna_maxlen_500_num_entries_100.tfrec
+--input_tfrec=bacteria_16s_rrna_maxlen_500_num_entries_100.tfrec
 ```
 
 
