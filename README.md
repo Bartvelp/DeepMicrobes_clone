@@ -1,4 +1,66 @@
-# DeepMicrobes
+# Deepmicrobe for 16s rRNA
+Runs fine on CPU for inferance + eval but training is faster on GPU. Installation instructions below in orig README.
+## Activate env
+```bash
+PATH=/home/WUR/grosm002/DeepMicrobes_clones/pipelines:$PATH
+PATH=/home/WUR/grosm002/DeepMicrobes_clone/scripts:$PATH
+PATH=/home/WUR/grosm002/DeepMicrobes_clone:$PATH
+conda activate py2tf1
+```
+
+# To generate a dataset
+
+```bash
+python barts_scripts/label_refseq.py bacteria_16s_rrna_all.fa bacteria_16s_rrna_maxlen_500_num_entries_100.fa 500 100 10
+```
+
+## Convert dataset to the binary format 
+```bash
+seq2tfrec_onehot.py --input_seq=bacteria_16s_rrna_maxlen_500_num_entries_100.fa --output_tfrec=bacteria_16s_rrna_maxlen_500_num_entries_100.tfrec --is_train=True
+```
+
+# To train
+```bash
+DeepMicrobes.py \
+--input_tfrec=bacteria_16s_rrna_maxlen_500_num_entries_100.tfrec \
+--model_name=seq2species \
+--model_dir=seq2species_new_weights_500max_100_entries \
+--train_epochs=10 \
+--encode_method=one_hot \
+--num_classes=100 \
+--max_len=500
+```
+## Eval
+
+```bash
+DeepMicrobes.py \
+--model_name=seq2species \
+--model_dir=seq2species_new_weights_500max_100entries \
+--encode_method=one_hot \
+--translate=False \
+--num_classes=100 \
+--max_len=500 \
+--running_mode=eval \
+--input_tfrec bacteria_16s_rrna_maxlen_500_num_entries_100.tfrec # Note that this also is the training file
+```
+
+
+## To use prediction
+```bash
+DeepMicrobes.py \
+--model_name=seq2species \
+--model_dir=seq2species_new_weights_500max_100entries \
+--encode_method=one_hot \
+--translate=False \
+--num_classes=100 \
+--max_len=500 \
+--pred_out=output.txt \
+--running_mode=predict_paired_class \
+--input_tfrec bacteria_16s_rrna_maxlen_500_num_entries_100.tfrec
+```
+
+
+# DeepMicrobes original README
 
 DeepMicrobes: taxonomic classification for metagenomics with deep learning <br>
 Supplementary data for the paper is available at https://github.com/MicrobeLab/DeepMicrobes-data <br>
