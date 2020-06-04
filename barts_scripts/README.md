@@ -20,9 +20,20 @@ DeepMicrobes.py \
 --num_classes=1000 \
 --max_len=500
 
+# Eval
+DeepMicrobes.py \
+--model_name=seq2species \
+--model_dir=seq2species_new_weights_500max_100entries \
+--encode_method=one_hot \
+--translate=False \
+--num_classes=100 \
+--max_len=500 \
+--running_mode=eval \
+--input_tfrec bacteria_16s_rrna_maxlen_500_num_entries_1000.tfrec
+
+
 # To use prediction
 DeepMicrobes.py \
---batch_size=1 \
 --model_name=seq2species \
 --model_dir=seq2species_new_weights_500max_100entries \
 --encode_method=one_hot \
@@ -30,7 +41,9 @@ DeepMicrobes.py \
 --num_classes=100 \
 --max_len=500 \
 --pred_out=output.txt \
---running_mode=predict_single_class \
---input_tfrec bacteria_16s_rrna_500bp_test.tfrec
+--running_mode=predict_paired_class \
+--input_tfrec bacteria_16s_rrna_maxlen_500_num_entries_1000.tfrec
+
+
 
 DeepMicrobes.py --input_tfrec=bacteria_16s_rrna_maxlen_500_num_entries_1000.tfrec --model_name=seq2species --model_dir=seq2species_new_weights_500max_100_entries --train_epochs=10 --encode_method=one_hot --num_classes=1000 --max_len=500
