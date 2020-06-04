@@ -1,5 +1,7 @@
 # Deepmicrobe for 16s rRNA
 Runs fine on CPU for inferance + eval but training is faster on GPU. Installation instructions below in orig README.
+# Current problem!
+It seems like the accuracy [as can be seen in this graph](https://imgur.com/DZK5A4k) is reset everytime the model starts training and presumably during evaluation or inference. So maybe something to do with the checkpoints?
 ## Activate env
 ```bash
 PATH=/home/WUR/grosm002/DeepMicrobes_clones/pipelines:$PATH

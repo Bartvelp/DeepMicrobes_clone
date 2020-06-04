@@ -114,6 +114,8 @@ def model_fn(features, labels, mode, params):
                 'predict': tf.estimator.export.PredictOutput(predictions)
             })
     print("LOGITS LABELS", logits, labels)
+    # LOGITS LABELS Tensor("output_layer/add:0", shape=(?, 100), dtype=float32) Tensor("IteratorGetNext:1", shape=(?, ?), dtype=int64, device=/device:CPU:0)
+
     loss = tf.losses.sparse_softmax_cross_entropy(
         logits=logits, labels=labels)
 
