@@ -11,19 +11,18 @@ seq2tfrec_onehot.py --input_seq=bacteria_16s_rrna_maxlen_500_num_entries_1000.fa
 seq2tfrec_onehot.py --input_seq=bacteria_16s_rrna_500bp_test.fa --output_tfrec=bacteria_16s_rrna_500bp_test.tfrec
 # To train
 DeepMicrobes.py \
---input_tfrec=bacteria_16s_rrna_maxlen_500_num_entries_1000.tfrec \
+--input_tfrec=bacteria_16s_rrna_maxlen_500_num_entries_100.tfrec \
 --model_name=seq2species \
 --model_dir=seq2species_new_weights_500max_100_entries \
---train_epochs=10 \
---batch_size=1024 \
+--train_epochs=1 \
 --encode_method=one_hot \
---num_classes=1000 \
+--num_classes=100 \
 --max_len=500
 
 # Eval
 DeepMicrobes.py \
 --model_name=seq2species \
---model_dir=seq2species_new_weights_500max_100entries \
+--model_dir=seq2species_new_weights_500max_100_entries \
 --encode_method=one_hot \
 --translate=False \
 --num_classes=100 \
@@ -35,7 +34,7 @@ DeepMicrobes.py \
 # To use prediction
 DeepMicrobes.py \
 --model_name=seq2species \
---model_dir=seq2species_new_weights_500max_100entries \
+--model_dir=seq2species_new_weights_500max_100_entries \
 --encode_method=one_hot \
 --translate=False \
 --num_classes=100 \

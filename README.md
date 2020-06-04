@@ -35,7 +35,7 @@ DeepMicrobes.py \
 ```bash
 DeepMicrobes.py \
 --model_name=seq2species \
---model_dir=seq2species_new_weights_500max_100entries \
+--model_dir=seq2species_new_weights_500max_100_entries \
 --encode_method=one_hot \
 --translate=False \
 --num_classes=100 \
@@ -49,7 +49,7 @@ DeepMicrobes.py \
 ```bash
 DeepMicrobes.py \
 --model_name=seq2species \
---model_dir=seq2species_new_weights_500max_100entries \
+--model_dir=seq2species_new_weights_500max_100_entries \
 --encode_method=one_hot \
 --translate=False \
 --num_classes=100 \
