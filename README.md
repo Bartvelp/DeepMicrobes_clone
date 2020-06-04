@@ -8,7 +8,7 @@ PATH=/home/WUR/grosm002/DeepMicrobes_clone:$PATH
 conda activate py2tf1
 ```
 
-# To generate a dataset
+## To generate a dataset
 
 ```bash
 python barts_scripts/label_refseq.py bacteria_16s_rrna_all.fa bacteria_16s_rrna_maxlen_500_num_entries_100.fa 500 100 10
@@ -19,7 +19,7 @@ python barts_scripts/label_refseq.py bacteria_16s_rrna_all.fa bacteria_16s_rrna_
 seq2tfrec_onehot.py --input_seq=bacteria_16s_rrna_maxlen_500_num_entries_100.fa --output_tfrec=bacteria_16s_rrna_maxlen_500_num_entries_100.tfrec --is_train=True
 ```
 
-# To train
+## To train
 ```bash
 DeepMicrobes.py \
 --input_tfrec=bacteria_16s_rrna_maxlen_500_num_entries_100.tfrec \
