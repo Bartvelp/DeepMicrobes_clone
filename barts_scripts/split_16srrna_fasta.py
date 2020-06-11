@@ -40,7 +40,7 @@ if __name__ == "__main__":
   print("Input refseq: {} output dir: {}".format(input_fn, output_dir))
   fasta_dict = parse_fasta(open(input_fn))
   for species in fasta_dict:
-    output_fn = output_dir + re.sub('\W+', '_', species) + '.fa'
+    output_fn = output_dir + re.sub(r'\W+', '_', species) + '.fa'
     output_fh = open(output_fn, 'w')
     sequences = fasta_dict[species]
     save_fasta(species, sequences[0], output_fh)
