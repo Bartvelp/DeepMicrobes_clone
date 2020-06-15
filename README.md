@@ -62,6 +62,12 @@ DeepMicrobes.py \
 --input_tfrec=bacteria_16s_rrna_maxlen_500_num_entries_100.tfrec
 ```
 
+## Some stats about my created datasets
+| Dataset | Number of species | Number of sequences | File size |
+| :------------ | :------------- | :-------------- | :-------------- |
+|Original| 20460 | 20460 | 30 MiB
+|Small training| 100 | 9589 | 73 MiB
+|Large Training| 20460 | 1964192 | 14.7 GiB
 
 # DeepMicrobes original README
 
