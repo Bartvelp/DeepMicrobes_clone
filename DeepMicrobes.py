@@ -147,7 +147,8 @@ def model_fn(features, labels, mode, params):
     # Create a tensor named train_accuracy for logging purposes
     tf.identity(accuracy[1], name='train_accuracy')
     tf.summary.scalar('train_accuracy', accuracy[1])
-
+      
+    print("TOTAL PARAMS", np.sum([np.prod(v.get_shape().as_list()) for v in tf.trainable_variables()]))
     return tf.estimator.EstimatorSpec(
         mode=mode,
         predictions=predictions,
